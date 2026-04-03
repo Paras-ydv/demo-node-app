@@ -1,12 +1,10 @@
+const { randomUUID } = require('crypto');
+
 class DemoService {
-  async fetchData(url) {
-    const res = await fetch(url);
-    return res.json();
-  }
-  transform(data) {
-    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
-  }
-  // auto-commit: 1775198550008
+  constructor() { this.store = new Map(); }
+  set(key, val) { this.store.set(key, val); }
+  get(key) { return this.store.get(key); }
+  // auto-commit: 1775198580007
 }
 
 module.exports = DemoService;
