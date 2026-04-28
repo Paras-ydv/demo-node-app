@@ -1,24 +1,13 @@
 class DemoService {
-  constructor() {
-    this.store = new Map();
+  chunk(arr, size) {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+    return chunks;
   }
-  
-  set(key, val) {
-    this.store.set(key, val);
+  flatten(arr) {
+    return arr.flat(Infinity);
   }
-  
-  get(key) {
-    return this.store.get(key);
-  }
-  
-  async fetchData(url) {
-    const res = await fetch(url);
-    return res.json();
-  }
-  transform(data) {
-    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
-  }
-  // auto-commit: 1777395228271
+  // auto-commit: 1777400956976
 }
 
 module.exports = DemoService;
