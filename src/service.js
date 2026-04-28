@@ -1,12 +1,14 @@
 class DemoService {
-  async fetchData(url) {
-    const res = await fetch(url);
-    return res.json();
+  filter(arr, predicate) {
+    return arr.filter(predicate);
   }
-  transform(data) {
-    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
+  map(arr, fn) {
+    return arr.map(fn);
   }
-  // auto-commit: 1777401036200
+  reduce(arr, fn, init) {
+    return arr.reduce(fn, init);
+  }
+  // auto-commit: 1777401037701
 }
 
 module.exports = DemoService;
