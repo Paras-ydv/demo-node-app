@@ -1,11 +1,12 @@
 class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
+  async fetchData(url) {
+    const res = await fetch(url);
+    return res.json();
   }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
+  transform(data) {
+    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
   }
-  // auto-commit: 1777401034705
+  // auto-commit: 1777401036200
 }
 
 module.exports = DemoService;
