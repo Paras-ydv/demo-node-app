@@ -1,4 +1,16 @@
 class DemoService {
+  constructor() {
+    this.store = new Map();
+  }
+  
+  set(key, val) {
+    this.store.set(key, val);
+  }
+  
+  get(key) {
+    return this.store.get(key);
+  }
+  
   async fetchData(url) {
     const res = await fetch(url);
     return res.json();
