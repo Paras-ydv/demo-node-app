@@ -1,12 +1,11 @@
 class DemoService {
-  async fetchData(url) {
-    const res = await fetch(url);
-    return res.json();
+  validate(obj, schema) {
+    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
   }
-  transform(data) {
-    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
+  sanitize(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, '');
   }
-  // auto-commit: 1777401033201
+  // auto-commit: 1777401034705
 }
 
 module.exports = DemoService;
