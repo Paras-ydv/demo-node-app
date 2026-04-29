@@ -1,9 +1,13 @@
+const crypto = require('crypto');
+
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1777444428775
+  hash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
+  }
+  verify(data, hash) {
+    return this.hash(data) === hash;
+  }
+  // auto-commit: 1777444430597
 }
 
 module.exports = DemoService;
