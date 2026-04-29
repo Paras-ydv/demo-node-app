@@ -1,14 +1,9 @@
 class DemoService {
-  filter(arr, predicate) {
-    return arr.filter(predicate);
-  }
-  map(arr, fn) {
-    return arr.map(fn);
-  }
-  reduce(arr, fn, init) {
-    return arr.reduce(fn, init);
-  }
-  // auto-commit: 1777444454928
+  constructor() { this.items = []; }
+  add(item) { this.items.push(item); }
+  getAll() { return [...this.items]; }
+  clear() { this.items = []; }
+  // auto-commit: 1777444456607
 }
 
 module.exports = DemoService;
