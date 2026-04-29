@@ -1,14 +1,13 @@
+const crypto = require('crypto');
+
 class DemoService {
-  filter(arr, predicate) {
-    return arr.filter(predicate);
+  hash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
   }
-  map(arr, fn) {
-    return arr.map(fn);
+  verify(data, hash) {
+    return this.hash(data) === hash;
   }
-  reduce(arr, fn, init) {
-    return arr.reduce(fn, init);
-  }
-  // auto-commit: 1777442534847
+  // auto-commit: 1777444390711
 }
 
 module.exports = DemoService;
