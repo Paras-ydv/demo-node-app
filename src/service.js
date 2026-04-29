@@ -1,9 +1,11 @@
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1777444421740
+  validate(obj, schema) {
+    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
+  }
+  sanitize(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, '');
+  }
+  // auto-commit: 1777444423482
 }
 
 module.exports = DemoService;
