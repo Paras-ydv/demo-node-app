@@ -1,13 +1,10 @@
-class DemoService {
-  async delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  async retry(fn, times = 3) {
-    for (let i = 0; i < times; i++) {
-      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
-    }
-  }
-  // auto-commit: 1777444399382
+const EventEmitter = require('events');
+
+class DemoService extends EventEmitter {
+  constructor() { super(); this.queue = []; }
+  enqueue(job) { this.queue.push(job); this.emit('job', job); }
+  dequeue() { return this.queue.shift(); }
+  // auto-commit: 1777444401005
 }
 
 module.exports = DemoService;
