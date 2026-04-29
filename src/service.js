@@ -1,13 +1,10 @@
-const crypto = require('crypto');
+const { randomUUID } = require('crypto');
 
 class DemoService {
-  hash(data) {
-    return crypto.createHash('sha256').update(data).digest('hex');
-  }
-  verify(data, hash) {
-    return this.hash(data) === hash;
-  }
-  // auto-commit: 1777444448419
+  constructor() { this.store = new Map(); }
+  set(key, val) { this.store.set(key, val); }
+  get(key) { return this.store.get(key); }
+  // auto-commit: 1777444450061
 }
 
 module.exports = DemoService;
