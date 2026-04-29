@@ -1,13 +1,11 @@
 class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
+  validate(obj, schema) {
+    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
   }
-  flatten(arr) {
-    return arr.flat(Infinity);
+  sanitize(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, '');
   }
-  // auto-commit: 1777444416384
+  // auto-commit: 1777444418176
 }
 
 module.exports = DemoService;
