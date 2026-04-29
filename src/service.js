@@ -1,12 +1,13 @@
 class DemoService {
-  async fetchData(url) {
-    const res = await fetch(url);
-    return res.json();
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
-  transform(data) {
-    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
+  async retry(fn, times = 3) {
+    for (let i = 0; i < times; i++) {
+      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
+    }
   }
-  // auto-commit: 1777444397111
+  // auto-commit: 1777444399382
 }
 
 module.exports = DemoService;
