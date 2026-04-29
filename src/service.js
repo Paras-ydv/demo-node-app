@@ -1,13 +1,12 @@
-const crypto = require('crypto');
-
 class DemoService {
-  hash(data) {
-    return crypto.createHash('sha256').update(data).digest('hex');
+  async fetchData(url) {
+    const res = await fetch(url);
+    return res.json();
   }
-  verify(data, hash) {
-    return this.hash(data) === hash;
+  transform(data) {
+    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
   }
-  // auto-commit: 1777444443703
+  // auto-commit: 1777444445256
 }
 
 module.exports = DemoService;
