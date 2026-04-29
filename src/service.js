@@ -1,9 +1,13 @@
 class DemoService {
-  constructor() { this.items = []; }
-  add(item) { this.items.push(item); }
-  getAll() { return [...this.items]; }
-  clear() { this.items = []; }
-  // auto-commit: 1777444402946
+  chunk(arr, size) {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+    return chunks;
+  }
+  flatten(arr) {
+    return arr.flat(Infinity);
+  }
+  // auto-commit: 1777444404487
 }
 
 module.exports = DemoService;
