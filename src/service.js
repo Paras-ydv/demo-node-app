@@ -1,10 +1,13 @@
-const { randomUUID } = require('crypto');
-
 class DemoService {
-  constructor() { this.store = new Map(); }
-  set(key, val) { this.store.set(key, val); }
-  get(key) { return this.store.get(key); }
-  // auto-commit: 1777444412854
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async retry(fn, times = 3) {
+    for (let i = 0; i < times; i++) {
+      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
+    }
+  }
+  // auto-commit: 1777444414522
 }
 
 module.exports = DemoService;
