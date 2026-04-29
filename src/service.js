@@ -1,13 +1,14 @@
 class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
+  filter(arr, predicate) {
+    return arr.filter(predicate);
   }
-  flatten(arr) {
-    return arr.flat(Infinity);
+  map(arr, fn) {
+    return arr.map(fn);
   }
-  // auto-commit: 1777405791762
+  reduce(arr, fn, init) {
+    return arr.reduce(fn, init);
+  }
+  // auto-commit: 1777442534847
 }
 
 module.exports = DemoService;
