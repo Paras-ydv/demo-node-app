@@ -1,11 +1,13 @@
 class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
+  chunk(arr, size) {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+    return chunks;
   }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
+  flatten(arr) {
+    return arr.flat(Infinity);
   }
-  // auto-commit: 1777444423482
+  // auto-commit: 1777444425235
 }
 
 module.exports = DemoService;
