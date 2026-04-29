@@ -1,11 +1,10 @@
-class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
-  }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
-  }
-  // auto-commit: 1777444418176
+const EventEmitter = require('events');
+
+class DemoService extends EventEmitter {
+  constructor() { super(); this.queue = []; }
+  enqueue(job) { this.queue.push(job); this.emit('job', job); }
+  dequeue() { return this.queue.shift(); }
+  // auto-commit: 1777444420220
 }
 
 module.exports = DemoService;
