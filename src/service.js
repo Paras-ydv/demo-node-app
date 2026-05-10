@@ -1,11 +1,10 @@
+const { randomUUID } = require('crypto');
+
 class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
-  }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
-  }
-  // auto-commit: 1778398317167
+  constructor() { this.store = new Map(); }
+  set(key, val) { this.store.set(key, val); }
+  get(key) { return this.store.get(key); }
+  // auto-commit: 1778404403240
 }
 
 module.exports = DemoService;
