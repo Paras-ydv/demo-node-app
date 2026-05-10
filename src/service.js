@@ -1,9 +1,10 @@
+const { randomUUID } = require('crypto');
+
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1778397188621
+  constructor() { this.store = new Map(); }
+  set(key, val) { this.store.set(key, val); }
+  get(key) { return this.store.get(key); }
+  // auto-commit: 1778397190136
 }
 
 module.exports = DemoService;
