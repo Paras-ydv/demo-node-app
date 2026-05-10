@@ -1,13 +1,14 @@
 class DemoService {
-  async delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  filter(arr, predicate) {
+    return arr.filter(predicate);
   }
-  async retry(fn, times = 3) {
-    for (let i = 0; i < times; i++) {
-      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
-    }
+  map(arr, fn) {
+    return arr.map(fn);
   }
-  // auto-commit: 1778397839574
+  reduce(arr, fn, init) {
+    return arr.reduce(fn, init);
+  }
+  // auto-commit: 1778397846007
 }
 
 module.exports = DemoService;
