@@ -1,9 +1,13 @@
 class DemoService {
-  constructor() { this.items = []; }
-  add(item) { this.items.push(item); }
-  getAll() { return [...this.items]; }
-  clear() { this.items = []; }
-  // auto-commit: 1778396455093
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async retry(fn, times = 3) {
+    for (let i = 0; i < times; i++) {
+      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
+    }
+  }
+  // auto-commit: 1778396456491
 }
 
 module.exports = DemoService;
