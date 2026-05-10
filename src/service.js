@@ -1,13 +1,13 @@
+const crypto = require('crypto');
+
 class DemoService {
-  async delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  hash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
   }
-  async retry(fn, times = 3) {
-    for (let i = 0; i < times; i++) {
-      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
-    }
+  verify(data, hash) {
+    return this.hash(data) === hash;
   }
-  // auto-commit: 1778405300884
+  // auto-commit: 1778406424644
 }
 
 module.exports = DemoService;
