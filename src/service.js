@@ -1,10 +1,14 @@
-const EventEmitter = require('events');
-
-class DemoService extends EventEmitter {
-  constructor() { super(); this.queue = []; }
-  enqueue(job) { this.queue.push(job); this.emit('job', job); }
-  dequeue() { return this.queue.shift(); }
-  // auto-commit: 1778395976368
+class DemoService {
+  filter(arr, predicate) {
+    return arr.filter(predicate);
+  }
+  map(arr, fn) {
+    return arr.map(fn);
+  }
+  reduce(arr, fn, init) {
+    return arr.reduce(fn, init);
+  }
+  // auto-commit: 1778395977701
 }
 
 module.exports = DemoService;
