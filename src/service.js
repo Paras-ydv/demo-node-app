@@ -1,13 +1,10 @@
-class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
-  }
-  flatten(arr) {
-    return arr.flat(Infinity);
-  }
-  // auto-commit: 1778396464839
+const EventEmitter = require('events');
+
+class DemoService extends EventEmitter {
+  constructor() { super(); this.queue = []; }
+  enqueue(job) { this.queue.push(job); this.emit('job', job); }
+  dequeue() { return this.queue.shift(); }
+  // auto-commit: 1778396466280
 }
 
 module.exports = DemoService;
