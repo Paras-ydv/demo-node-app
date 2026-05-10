@@ -1,9 +1,14 @@
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1778395985689
+  filter(arr, predicate) {
+    return arr.filter(predicate);
+  }
+  map(arr, fn) {
+    return arr.map(fn);
+  }
+  reduce(arr, fn, init) {
+    return arr.reduce(fn, init);
+  }
+  // auto-commit: 1778395987062
 }
 
 module.exports = DemoService;
