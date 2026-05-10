@@ -1,11 +1,13 @@
+const crypto = require('crypto');
+
 class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
+  hash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
   }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
+  verify(data, hash) {
+    return this.hash(data) === hash;
   }
-  // auto-commit: 1778397191541
+  // auto-commit: 1778397192974
 }
 
 module.exports = DemoService;
