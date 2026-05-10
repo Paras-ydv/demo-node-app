@@ -1,9 +1,12 @@
 class DemoService {
-  constructor() { this.items = []; }
-  add(item) { this.items.push(item); }
-  getAll() { return [...this.items]; }
-  clear() { this.items = []; }
-  // auto-commit: 1778396479309
+  async fetchData(url) {
+    const res = await fetch(url);
+    return res.json();
+  }
+  transform(data) {
+    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
+  }
+  // auto-commit: 1778396481086
 }
 
 module.exports = DemoService;
