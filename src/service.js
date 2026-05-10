@@ -1,13 +1,10 @@
-const crypto = require('crypto');
+const EventEmitter = require('events');
 
-class DemoService {
-  hash(data) {
-    return crypto.createHash('sha256').update(data).digest('hex');
-  }
-  verify(data, hash) {
-    return this.hash(data) === hash;
-  }
-  // auto-commit: 1778396473616
+class DemoService extends EventEmitter {
+  constructor() { super(); this.queue = []; }
+  enqueue(job) { this.queue.push(job); this.emit('job', job); }
+  dequeue() { return this.queue.shift(); }
+  // auto-commit: 1778396475168
 }
 
 module.exports = DemoService;
