@@ -1,9 +1,12 @@
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1778397887082
+  async fetchData(url) {
+    const res = await fetch(url);
+    return res.json();
+  }
+  transform(data) {
+    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
+  }
+  // auto-commit: 1778397888810
 }
 
 module.exports = DemoService;
