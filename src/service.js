@@ -1,13 +1,13 @@
 class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
-  flatten(arr) {
-    return arr.flat(Infinity);
+  async retry(fn, times = 3) {
+    for (let i = 0; i < times; i++) {
+      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
+    }
   }
-  // auto-commit: 1778396501991
+  // auto-commit: 1778396503387
 }
 
 module.exports = DemoService;
