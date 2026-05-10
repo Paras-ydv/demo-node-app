@@ -1,13 +1,13 @@
+const crypto = require('crypto');
+
 class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
+  hash(data) {
+    return crypto.createHash('sha256').update(data).digest('hex');
   }
-  flatten(arr) {
-    return arr.flat(Infinity);
+  verify(data, hash) {
+    return this.hash(data) === hash;
   }
-  // auto-commit: 1778397347486
+  // auto-commit: 1778397348830
 }
 
 module.exports = DemoService;
