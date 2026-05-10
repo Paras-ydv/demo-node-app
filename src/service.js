@@ -1,9 +1,13 @@
 class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1778395988375
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async retry(fn, times = 3) {
+    for (let i = 0; i < times; i++) {
+      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
+    }
+  }
+  // auto-commit: 1778395989808
 }
 
 module.exports = DemoService;
