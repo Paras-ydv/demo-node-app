@@ -1,9 +1,10 @@
-class DemoService {
-  constructor() { this.counter = 0; }
-  increment() { return ++this.counter; }
-  decrement() { return --this.counter; }
-  reset() { this.counter = 0; }
-  // auto-commit: 1778395979003
+const EventEmitter = require('events');
+
+class DemoService extends EventEmitter {
+  constructor() { super(); this.queue = []; }
+  enqueue(job) { this.queue.push(job); this.emit('job', job); }
+  dequeue() { return this.queue.shift(); }
+  // auto-commit: 1778395980364
 }
 
 module.exports = DemoService;
