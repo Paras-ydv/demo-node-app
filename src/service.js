@@ -1,14 +1,11 @@
 class DemoService {
-  filter(arr, predicate) {
-    return arr.filter(predicate);
+  validate(obj, schema) {
+    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
   }
-  map(arr, fn) {
-    return arr.map(fn);
+  sanitize(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, '');
   }
-  reduce(arr, fn, init) {
-    return arr.reduce(fn, init);
-  }
-  // auto-commit: 1778397846007
+  // auto-commit: 1778397853728
 }
 
 module.exports = DemoService;
