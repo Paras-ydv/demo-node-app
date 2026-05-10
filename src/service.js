@@ -1,13 +1,11 @@
 class DemoService {
-  async delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  validate(obj, schema) {
+    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
   }
-  async retry(fn, times = 3) {
-    for (let i = 0; i < times; i++) {
-      try { return await fn(); } catch (e) { if (i === times - 1) throw e; }
-    }
+  sanitize(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, '');
   }
-  // auto-commit: 1778396489843
+  // auto-commit: 1778396491232
 }
 
 module.exports = DemoService;
