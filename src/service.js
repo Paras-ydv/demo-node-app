@@ -1,11 +1,9 @@
 class DemoService {
-  validate(obj, schema) {
-    return Object.keys(schema).every(k => typeof obj[k] === schema[k]);
-  }
-  sanitize(str) {
-    return str.replace(/[^a-zA-Z0-9]/g, '');
-  }
-  // auto-commit: 1778396477929
+  constructor() { this.items = []; }
+  add(item) { this.items.push(item); }
+  getAll() { return [...this.items]; }
+  clear() { this.items = []; }
+  // auto-commit: 1778396479309
 }
 
 module.exports = DemoService;
