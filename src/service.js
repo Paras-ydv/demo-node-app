@@ -1,10 +1,10 @@
-const EventEmitter = require('events');
+const { randomUUID } = require('crypto');
 
-class DemoService extends EventEmitter {
-  constructor() { super(); this.queue = []; }
-  enqueue(job) { this.queue.push(job); this.emit('job', job); }
-  dequeue() { return this.queue.shift(); }
-  // auto-commit: 1778396462164
+class DemoService {
+  constructor() { this.store = new Map(); }
+  set(key, val) { this.store.set(key, val); }
+  get(key) { return this.store.get(key); }
+  // auto-commit: 1778396463490
 }
 
 module.exports = DemoService;
