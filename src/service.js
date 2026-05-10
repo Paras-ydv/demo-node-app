@@ -1,13 +1,12 @@
 class DemoService {
-  chunk(arr, size) {
-    const chunks = [];
-    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
-    return chunks;
+  async fetchData(url) {
+    const res = await fetch(url);
+    return res.json();
   }
-  flatten(arr) {
-    return arr.flat(Infinity);
+  transform(data) {
+    return Array.isArray(data) ? data.map(d => ({ ...d, processed: true })) : data;
   }
-  // auto-commit: 1778397998924
+  // auto-commit: 1778398320714
 }
 
 module.exports = DemoService;
