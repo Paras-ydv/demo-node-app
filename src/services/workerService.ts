@@ -1,28 +1,28 @@
-import axios, { AxiosInstance } from 'axios';
+import { EventEmitter } from 'events';
 
-export interface WorkerConfig {
-  baseURL: string;
-  timeout?: number;
+export class WorkerService extends EventEmitter {
+  private cache: Map<string, any>;
+
+  constructor() {
+    super();
+    this.cache = new Map();
+  }
+
+  async get(key: string): Promise<any> {
+    return this.cache.get(key);
+  }
+
+  async set(key: string, value: any): Promise<void> {
+    this.cache.set(key, value);
+    this.emit('updated', { key, value });
+  }
+
+  async delete(key: string): Promise<boolean> {
+    return this.cache.delete(key);
+  }
+
+  async clear(): Promise<void> {
+    this.cache.clear();
+  }
 }
-
-export class WorkerService {
-  private client: AxiosInstance;
-
-  constructor(config: WorkerConfig) {
-    this.client = axios.create({
-      baseURL: config.baseURL,
-      timeout: config.timeout || 5000,
-    });
-  }
-
-  async fetch<T>(endpoint: string): Promise<T> {
-    const response = await this.client.get<T>(endpoint);
-    return response.data;
-  }
-
-  async post<T>(endpoint: string, data: any): Promise<T> {
-    const response = await this.client.post<T>(endpoint, data);
-    return response.data;
-  }
-}
-// auto-commit: 1778733379718
+// auto-commit: 1778735072504
