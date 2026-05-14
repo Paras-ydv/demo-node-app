@@ -1,7 +1,7 @@
 # .cicd.yml - PipelineHub CI/CD Configuration
 name: demo-node-app-pipeline
 language: node
-environment: production
+environment: staging
 
 # Pipeline stages to execute
 stages:
