@@ -1,3 +1,6 @@
+import { validateProductSchema } from '../utils/validation';
+import { recordLatency } from '../utils/metrics';
+
 export class ProductService {
   private queue: Array<any> = [];
   private processing = false;
@@ -19,8 +22,13 @@ export class ProductService {
   }
 
   private async handleItem(item: any): Promise<void> {
-    console.log('Processing:', item);
-    await new Promise(resolve => setTimeout(resolve, 100));
+    const started = Date.now();
+    if (!validateProductSchema(item)) {
+      throw new Error('Invalid product');
+    }
+    const normalized = normalizeProductPayload(item);
+    await this.persistWithRetry(normalized);
+    recordLatency('product.handle', Date.now() - started);
   }
 }
 // auto-commit: 1778737088101
